@@ -1,14 +1,14 @@
 podman ps | grep iperf-server 2>&1 > /dev/null && RETVAL=0 || RETVAL=1
 
 if [[ ${RETVAL} -eq 1 ]]; then
-podman run -d -p 5001:5001 --rm --name iperf-server quay.io/ooichman/iperf-server
+podman run -d -p 5001:5001 --rm --name iperf-server quay.io/randomparity/iperf-server
 sleep 2
 fi
 
 podman ps | grep iperf-client 2>&1 > /dev/null && RETVAL=0 || RETVAL=1
 
 if [[ ${RETVAL} -eq 1 ]]; then
-podman run -d -p 8080:8080 --rm --name iperf-client quay.io/ooichman/iperf-client
+podman run -d -p 8080:8080 --rm --name iperf-client quay.io/randomparity/iperf-client
 sleep 2
 fi
 
@@ -22,7 +22,7 @@ podman run -d -p 9100:9100 \
 	-e IPREF_CLIENT_URI=${IF_ADDR}:8080 \
 	-e IPREF_SERVER=${IF_ADDR} \
 	--name iperf-exporter \
-	quay.io/ooichman/iperf-exporter
+	quay.io/randomparity/iperf-exporter
 sleep 2
 fi
 
@@ -33,5 +33,5 @@ podman run -d --rm \
 	--name iperf-check \
 	-e IPREF_CLIENT_URI=${IF_ADDR}:8080 \
 	-e IPREF_SERVER=${IF_ADDR} \
-	quay.io/ooichman/iperf-check
+	quay.io/randomparity/iperf-check
 fi

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: iperf-exporter
-          image: quay.io/ooichman/iperf-exporter
+          image: quay.io/randomparity/iperf-exporter
           env:
           - name: IPREF_CLIENT_URI
             value: ''
